@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import type { FormFields, FormErrors } from './store.types'
 
 export const useFormStore = defineStore('form', () => {
-  const form = ref<FormFields>({
+  const initialForm: FormFields = {
     firstName: '',
     lastName: '',
     companyName: '',
@@ -14,7 +14,9 @@ export const useFormStore = defineStore('form', () => {
     timeline: '',
     findUs: '',
     favorite: '',
-  })
+  }
+
+   const form = ref<FormFields>({ ...initialForm })
 
   const errors = ref<FormErrors>({
     firstName: false,
@@ -83,7 +85,7 @@ export const useFormStore = defineStore('form', () => {
       errors.value.email = !value || !emailRegex.test(value)
       break
     }
-    
+
     case 'projectType':
       errors.value.projectType = form.value.projectType.length === 0
       break
@@ -130,6 +132,12 @@ export const useFormStore = defineStore('form', () => {
 
   const hasErrors = computed(() => Object.values(errors.value).some(Boolean))
 
+  const resetForm = () => {
+    form.value = { ...initialForm }
+    Object.keys(errors.value).forEach(key => (errors.value[key as keyof FormErrors] = false))
+    Object.keys(touched.value).forEach(key => (touched.value[key as keyof FormFields] = false))
+  }
+
   return {
     form,
     errors,
@@ -140,5 +148,6 @@ export const useFormStore = defineStore('form', () => {
     toggleProjectType,
     validateField,
     validateForm,
+    resetForm
   }
 })

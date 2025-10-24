@@ -149,7 +149,7 @@
       variant="outline"
       label="LFG"
       :disabled="!formStore.canSubmit"
-      @click="formStore.validateForm()"
+       @click="handleSubmit"
       className="w-full h-12"
     />
   </div>
@@ -164,5 +164,14 @@ import Button from '../../atoms/button/ButtonComponent.vue'
 import Text from '../../atoms/text/TextComponent.vue'
 import { useFormStore } from '../../../stores/formStore'
 
+const emit = defineEmits(['submitted'])
 const formStore = useFormStore()
+const handleSubmit = () => {
+  formStore.validateForm()
+
+  if (formStore.canSubmit) {
+    emit('submitted')
+    formStore.resetForm()  
+  }
+}
 </script>

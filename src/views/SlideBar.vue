@@ -1,12 +1,9 @@
 <template>
   <div class="sidebar-wrapper">
-    <div
-      class="overlay fixed inset-0 z-40"
-      @click="$emit('close')"
-    >
+    <div class="overlay fixed inset-0 z-40" @click="$emit('close')">
       <div
-        class="absolute inset-0 bg-black/30  bg-[url('./assets/images/noise.png')] bg-repeat"
-        style="backdrop-filter: blur(0px); image-rendering: pixelated;"
+        class="absolute inset-0 bg-black/30 bg-[url('./assets/images/noise.png')] bg-repeat"
+        style="backdrop-filter: blur(0px); image-rendering: pixelated"
       />
     </div>
 
@@ -21,20 +18,24 @@
       <img :src="divider" alt="divider" class="w-full mt-4 mb-6" />
 
       <div class="space-y-12">
-        <ProjectDetails />
-        <Contact />
+        <ProjectDetails v-if="!submitted" />
+        <Contact v-if="!submitted" @submitted="submitted = true" />
+        <FormSubmission v-else />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import Button from '../components/atoms/button/ButtonComponent.vue'
 import ProjectDetails from './ProjectDetails.vue'
 import divider from '../assets/divider.svg'
 import Contact from '../components/organisms/contact/ContactForm.vue'
+import FormSubmission from '@/components/molecules/submission/FormSubmission.vue'
 
 defineEmits(['close'])
+const submitted = ref(false)
 </script>
 
 <style scoped>
