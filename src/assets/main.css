@@ -1,43 +1,66 @@
-@import './styles/base.css';
-@import "tailwindcss";
+@import './styles/fonts.css';
+@import 'tailwindcss';
 
-@theme {
-  /* colors */
-  --color-green: var(--vt-c-green);
-  --color-cream: var(--vt-c-cream);
-  --color-grey: var(--vt-c-grey);
-  --color-black: var(--vt-c-black);
-  --color-red: var(--vt-c-red);
+@theme static {
+  /* Colors */
+  --color-green: #00FF6A;
+  --color-cream: #FFFEF4;
+  --color-grey: #909090;
+  --color-black: #000000;
+  --color-red: #FF0000;
 
-  --color-background: var(--color-background);
-  --color-surface: var(--color-surface);
+  --color-surface: var(--color-cream);
+  --color-background: var(--color-black);
 
-  --color-text: var(--color-text);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text: var(--color-cream);
+  --color-text-secondary: var(--color-grey);
+  --color-text-tertiary: var(--color-green);
+  --color-text-dark: var(--color-black);
 
-  --color-heading: var(--color-heading);
-  --color-heading-secondary: var(--color-heading-secondary);
-  --color-heading-tertiary: var(--color-heading-tertiary);
+  --color-heading: var(--color-cream);
+  --color-heading-secondary: var(--color-grey);
+  --color-heading-tertiary: var(--color-green);
 
-  --color-border-default: var(--color-border-default);
-  --color-border-success: var(--color-border-success);
-  --color-border-error: var(--color-border-error);
+  --color-border-default: var(--color-cream);
+  --color-border-success: var(--color-green);
+  --color-border-error: var(--color-red);
 
-  --color-accent: var(--color-accent);
-  --color-error: var(--color-error);
-  --color-surface: var(--color-surface);
+  --color-accent: var(--color-green);
+  --color-error: var(--color-red);
 
-  /* fonts */
+  /* Fonts */
   --font-heading: 'Neue Montreal', sans-serif;
-  --font-heading-secondary: 'Messina Sans Mono', monospace;
+  --font-heading-secondary: 'MessinaSansMono', monospace;
   --font-body: 'Neue Montreal', sans-serif;
-  --font-mono: 'Messina Sans Mono', monospace;
+  --font-mono: 'MessinaSansMono', monospace;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0;
-  font-weight: normal;
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+@utility font-heading-secondary {
+  font-family: var(--font-heading-secondary);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+@layer base {
+  body {
+    @apply font-body text-text bg-cream min-h-screen leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-heading;
+  }
+
+  #app {
+    @apply  p-0 font-normal;
+  }
 }
