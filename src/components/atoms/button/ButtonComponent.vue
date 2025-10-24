@@ -7,7 +7,6 @@
     <Headline 
       :label="label"
       size="base"
-      variant="tertiary"
       className="group-hover:text-(--color-text-dark)"
     />
   </button>
@@ -31,11 +30,11 @@ defineEmits(['click'])
 const variantClass = computed(() => {
   switch (props.variant) {
     case 'secondary':
-      return 'bg-[var(--color-text-secondary)] text-[var(--color-background)]'
+      return 'bg-text-secondary text-text-dark'
     case 'outline':
-      return 'border border-[var(--color-border-success)] text-[var(--color-text)]'
+      return 'border border-border-success hover:bg-accent text-text'
     default:
-      return 'bg-[var(--color-accent)] text-[var(--color-black)]'
+      return 'bg-accent text-text-dark'
   }
 })
 

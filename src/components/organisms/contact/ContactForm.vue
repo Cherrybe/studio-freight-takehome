@@ -171,7 +171,7 @@ const handleSubmit = () => {
 
   if (formStore.canSubmit) {
     emit('submitted')
-    formStore.resetForm()  
+    formStore.resetForm()
   }
 }
 </script>

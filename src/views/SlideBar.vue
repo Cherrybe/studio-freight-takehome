@@ -1,70 +1,129 @@
 <template>
-  <div class="sidebar-wrapper">
-    <div class="overlay fixed inset-0 z-40" @click="$emit('close')">
-      <div
-        class="absolute inset-0 bg-black/30 bg-[url('./assets/images/noise.png')] bg-repeat"
-        style="backdrop-filter: blur(0px); image-rendering: pixelated"
-      />
-    </div>
-
+  <div class="fixed inset-0 z-40" v-show="visible">
+    <!-- Overlay -->
     <div
-      class="sidebar fixed top-0 right-0 h-full w-183 bg-(--color-black) overflow-hidden rounded-tl-3xl rounded-bl-3xl shadow-lg z-50 p-6 overflow-y-auto scroll-wrapper"
-      style="height: 100vh"
+      class="absolute inset-0 bg-black/40 bg-[url('./assets/images/noise.png')] bg-repeat transition-opacity duration-500"
+      :class="{ 'opacity-100': props.isVisible, 'opacity-0': !props.isVisible }"
+      @click="closeSidebar"
+      style="backdrop-filter: blur(2px); image-rendering: pixelated"
+    ></div>
+
+    <!-- Sidebar -->
+    <div
+      class="absolute top-0 right-0 h-full max-w-183 w-full bg-(--color-black) shadow-2xl rounded-tl-3xl rounded-bl-3xl overflow-hidden"
+      :class="sidebarClass"
     >
-      <div class="flex justify-end mt-4 mr-4">
-        <Button variant="outline" :label="'Close'" @click="$emit('close')" />
-      </div>
+      <div class="h-full overflow-y-auto scroll-wrapper p-6">
+        <div class="flex justify-end">
+          <Button variant="outline" label="Close" @click="closeSidebar" />
+        </div>
 
-      <img :src="divider" alt="divider" class="w-full mt-4 mb-6" />
+        <img :src="divider" alt="divider" class="w-full mt-6 mb-8" />
 
-      <div class="space-y-12">
-        <ProjectDetails v-if="!submitted" />
-        <Contact v-if="!submitted" @submitted="submitted = true" />
-        <FormSubmission v-else />
+        <Transition name="fade" mode="out-in">
+          <div v-if="!submitted" key="form-content" class="space-y-6">
+            <ProjectDetails />
+            <Contact @submitted="submitted = true" />
+          </div>
+          <FormSubmission v-else key="form-submitted" />
+        </Transition>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import Button from '../components/atoms/button/ButtonComponent.vue'
 import ProjectDetails from './ProjectDetails.vue'
 import divider from '../assets/divider.svg'
 import Contact from '../components/organisms/contact/ContactForm.vue'
 import FormSubmission from '@/components/molecules/submission/FormSubmission.vue'
 
-defineEmits(['close'])
+const props = defineProps<{ isVisible: boolean }>()
+const emit = defineEmits<{
+  (event: 'update:isVisible', value: boolean): void
+}>()
+
 const submitted = ref(false)
+const visible = ref(false)
+
+const sidebarClass = computed(() =>
+  props.isVisible ? 'animate-slideInSmooth' : 'animate-slideOutSmooth'
+)
+
+// Keep sidebar mounted while sliding in/out
+watch(
+  () => props.isVisible,
+  (newVal) => {
+    if (newVal) visible.value = true
+    else {
+      // let slide-out animation play
+      setTimeout(() => {
+        visible.value = false
+      }, 900) // match animation duration
+    }
+  },
+  { immediate: true }
+)
+
+const closeSidebar = () => {
+  emit('update:isVisible', false) // triggers slide-out
+}
 </script>
 
 <style scoped>
+@keyframes slideInSmooth {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutSmooth {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-slideInSmooth {
+  animation: slideInSmooth 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-slideOutSmooth {
+  animation: slideOutSmooth 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* form submission animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
 .scroll-wrapper {
   scrollbar-width: thin;
   scrollbar-color: var(--color-heading-secondary) var(--color-black);
 }
-
-/* For WebKit browsers */
 .scroll-wrapper::-webkit-scrollbar {
   width: 9px;
-  height: 248px;
 }
-
 .scroll-wrapper::-webkit-scrollbar-track {
   background: var(--color-black);
 }
-
 .scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: var(--color-heading-secondary);
-  border-radius: 0;
-  border: 0;
-}
-
-.scroll-wrapper::-webkit-scrollbar-button {
-  display: none;
-}
-
-.scroll-wrapper::-webkit-scrollbar-corner {
-  background: var(--color-black);
 }
 </style>
