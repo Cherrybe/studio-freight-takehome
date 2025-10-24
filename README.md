@@ -110,5 +110,6 @@ Global variables in `globals.css` handle typography and color palette.
 
 ## Contact
 If you need access or encounter issues reviewing the project:
-- Email: [Chrissy](qchristabel5@gmail.com)
-- WhatsApp: [Chrissy](+233548177587)
+- Email: qchristabel5@gmail.com
+- WhatsApp: +233548177587
+- LinkedIn: https://www.linkedin.com/in/christabel-quaye-780a1a1a9/
