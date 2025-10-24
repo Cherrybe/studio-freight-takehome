@@ -1,10 +1,22 @@
 <template>
-  <section class="bg-background text-text">
-    <h1 class="text-heading">Welcome</h1>
-    <p class="text-text-secondary">A clean dark-mode palette setup.</p>
+  <div class="relative overflow-hidden">
+    <Button
+      variant="outline"
+      label="Contact"
+      class="float-right mr-4 mt-8"
+      @click="isSidebarOpen = true"
+    />
 
-    <button class="bg-accent text-black hover:bg-green border border-border-default">
-      Click me
-    </button>
-  </section>
+    <Transition name="slide-fade">
+      <Sidebar v-model:isVisible="isSidebarOpen" />
+    </Transition>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import Button from '../components/atoms/button/ButtonComponent.vue'
+import Sidebar from './SlideBar.vue'
+
+const isSidebarOpen = ref(false)
+</script>

@@ -34,12 +34,47 @@ src/
 │ └─ styles/
 │ └─ globals.css
 ├─ components/
-│ ├─ ContactForm.vue
-│ ├─ AnimatedToggleButton.vue
-│ ├─ InputField.vue
-│ └─ IconSend.vue
+│ ├── atoms/
+│    ├── Headline/
+│    │    └── HeadlineComponent.vue
+│    │    └── Headline.test.ts
+│    ├── Text/
+│    │    └── ...
+│    ├── Button/
+│    │    └── ...
+│    ├── Input/
+│    │    └── ...
+│    ├── Label/
+│    │    └── ...
+│    ├── Textarea/
+│    │    └── ...
+│    ├── Chip/
+│    │    └── ...
+│    └── SelectBase/
+│    │    └── ...
+│
+├── molecules/
+│    ├── InputField/
+│    │    └── InputField.vue
+│    │    └── Input.test.ts
+│    ├── TextareaField/
+│    │    └── ...
+│    ├── SelectField/
+│    │    └── ...
+│    └── AccordionItem/
+│    │    └── ...
+│
+├── organisms/
+│    ├── ContactForm/
+│    └── FAQAccordion/
+│
+├── templates/
+│    └── ContactSectionTemplate/
+│
+└── views/
+│     └── ContactPage.vue
 ├─ App.vue
-└─ main.js
+└─ main.ts
 ```
 
 ---
