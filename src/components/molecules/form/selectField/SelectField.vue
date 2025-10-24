@@ -78,7 +78,6 @@ const selectOption = (value: string) => {
   emit('update:modelValue', value)
 }
 
-// Sync with parent changes
 watch(
   () => props.modelValue,
   (val) => {
@@ -91,7 +90,7 @@ function adjustDropdownPosition() {
 
   const rect = buttonRef.value.getBoundingClientRect()
   const spaceBelow = window.innerHeight - rect.bottom
-  const dropdownHeight = Math.min(props.options.length * 40, 240) // approx 40px per item, max 240px
+  const dropdownHeight = Math.min(props.options.length * 40, 240)
 
   if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
     dropdownPosition.value = 'bottom-full mb-1'
@@ -102,7 +101,6 @@ function adjustDropdownPosition() {
 </script>
 
 <style scoped>
-/* Optional: custom scrollbar for dropdown */
 ul::-webkit-scrollbar {
   width: 6px;
 }

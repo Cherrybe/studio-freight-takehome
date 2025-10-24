@@ -52,23 +52,21 @@ const sidebarClass = computed(() =>
   props.isVisible ? 'animate-slideInSmooth' : 'animate-slideOutSmooth'
 )
 
-// Keep sidebar mounted while sliding in/out
 watch(
   () => props.isVisible,
   (newVal) => {
     if (newVal) visible.value = true
     else {
-      // let slide-out animation play
       setTimeout(() => {
         visible.value = false
-      }, 900) // match animation duration
+      }, 900)
     }
   },
   { immediate: true }
 )
 
 const closeSidebar = () => {
-  emit('update:isVisible', false) // triggers slide-out
+  emit('update:isVisible', false)
 }
 </script>
 

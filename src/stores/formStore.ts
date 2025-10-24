@@ -137,7 +137,7 @@ export const useFormStore = defineStore('form', () => {
   const resetForm = () => {
     form.value = {
       ...initialForm,
-      projectType: [] // ensure a fresh array
+      projectType: []
     }
 
     for (const key of Object.keys(errors.value)) {
