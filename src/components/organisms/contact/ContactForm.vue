@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col space-y-6 w-full" v-bind="$attrs" ref="wrapperRef">
     <!-- Name fields -->
-    <div class="flex gap-6 w-full">
+    <div class="flex flex-col sm:flex-row gap-6 w-full">
       <InputField
         id="first-name"
         label="FIRST NAME*"
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Company / Email -->
-    <div class="flex gap-6 w-full">
+    <div class="flex flex-col sm:flex-row gap-6 w-full">
       <InputField
         id="company-name"
         label="COMPANY NAME*"
@@ -84,10 +84,11 @@
       :rows="4"
       :error="formStore.touched.projectDescription && formStore.errors.projectDescription"
       @input="formStore.validateField('projectDescription')"
+      class="w-full"
     />
 
     <!-- Budget / Timeline -->
-    <div class="flex gap-6 w-full">
+    <div class="flex flex-col sm:flex-row gap-6 w-full">
       <SelectField
         id="budget-expectation"
         label="BUDGET EXPECTATION*"
@@ -119,7 +120,7 @@
     </div>
 
     <!-- Optional fields -->
-    <div class="flex gap-6 w-full">
+    <div class="flex flex-col sm:flex-row gap-6 w-full">
       <InputField
         id="how-find-us"
         label="HOW YOU FIND US?"
