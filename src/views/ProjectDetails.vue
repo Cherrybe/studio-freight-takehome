@@ -14,7 +14,7 @@
           v-if="item.title"
           tag="h3"
           size="base"
-          class="uppercase tracking-wide font-bold inline text-[--color-cream]"
+          class="tracking-wide font-bold inline"
           :label="item.title + '.'"
         />
         <TextComponent

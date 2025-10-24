@@ -4,19 +4,22 @@ export interface InputFieldProps {
   modelValue?: string
   placeholder?: string
   type?: string
-  customClass?: string
+  error?: boolean
+  success?: string
 }
 
 interface SelectOption {
   label: string
-  value: string | number
+  value: string
 }
 
 export interface SelectFieldProps {
   id?: string
   label?: string
   options: SelectOption[]
-  modelValue?: string | number
+  modelValue?: string
+  error?: boolean
+  className?: string
 } 
 
 export interface TextareaFieldProps {

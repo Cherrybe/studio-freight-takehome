@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    :class="[baseClass, colorClass, fontClass, className, 'transition-colors duration-200']"
+    :class="[baseClass, colorClass, fontClass, 'transition-colors duration-200', className]"
   >
     {{ label || $slots.default?.() }}
   </component>
@@ -50,5 +50,5 @@ const baseClass = computed(() => {
   }
 })
 
-const fontClass = 'font-heading font-bold leading-[110%] uppercase text-heading-tertiary]'
+const fontClass = 'font-heading font-bold leading-[110%] uppercase'
 </script>

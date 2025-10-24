@@ -1,7 +1,7 @@
 <template>
   <button
-    :class="[baseClass, variantClass, sizeClass, className, 'group']"
-    :disabled="disabled"
+    :class="[baseClass, variantClass, sizeClass, className, props.disabled ? 'cursor-not-allowed opacity-50' : 'group']"
+    :disabled="props.disabled"
     @click="$emit('click')"
   >
     <Headline 
@@ -50,6 +50,6 @@ const sizeClass = computed(() => {
   }
 })
 
-const baseClass = 'font-[var(--font-body)] rounded-lg transition-colors duration-200 py-1 px-2 hover:bg-[var(--color-accent)] hover:cursor-pointer'
+const baseClass = 'font-[var(--font-body)] rounded-lg transition-colors duration-200 py-1 px-2'
 const className = props.className || ''
 </script>

@@ -1,5 +1,13 @@
 <template>
-  <span :class="['inline-flex items-center px-3 py-1 rounded-full text-sm', bgClass, textClass, customClass]">
+  <span
+    :class="[
+      'inline-flex items-center px-4 py-[0.938rem] rounded-3xl transition-colors duration-200',
+      'font-heading font-bold leading-[110%] uppercase',
+      borderClass,
+      textClass,
+      customClass
+    ]"
+  >
     <slot />
   </span>
 </template>
@@ -8,21 +16,24 @@
 import { computed } from 'vue'
 
 interface ChipProps {
-  variant?: 'primary' | 'secondary' | 'success' | 'error'
+  selected?: boolean
+  error?: boolean
   customClass?: string
 }
 
 const props = defineProps<ChipProps>()
 
-const bgClass = computed(() => {
-  switch (props.variant) {
-    case 'secondary': return 'bg-[var(--color-text-secondary)]'
-    case 'success': return 'bg-[var(--color-border-success)]'
-    case 'error': return 'bg-[var(--color-error)]'
-    default: return 'bg-[var(--color-accent)]'
-  }
+const borderClass = computed(() => {
+  if (props.error) return 'border border-border-error'
+  if (props.selected) return 'border border-border-success'
+  return 'border border-default'
 })
 
-const textClass = 'text-[var(--color-black)] font-[var(--font-body)]'
+const textClass = computed(() => {
+  if (props.error) return 'text-border-default'
+  if (props.selected) return 'text-border-success'
+  return 'text-cream'
+})
+
 const customClass = props.customClass || ''
 </script>
