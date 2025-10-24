@@ -1,0 +1,62 @@
+:root {
+  /* Brand palette */
+  --vt-c-green: #00FF6A;
+  --vt-c-cream: #FFFEF4;
+  --vt-c-grey: #909090;
+  --vt-c-black: #000000;
+  --vt-c-red: #FF0000;
+
+  /* Color palette */
+  --color-surface: var(--vt-c-cream);
+  --color-background: var(--vt-c-black);
+
+  --color-text: var(--vt-c-cream);
+  --color-text-secondary: var(--vt-c-grey);
+  --color-text-tertiary: var(--vt-c-green);
+  --color-text-dark: var(--vt-c-black);
+
+  --color-heading: var(--vt-c-cream);
+  --color-heading-secondary: var(--vt-c-grey);
+  --color-heading-tertiary: var(--vt-c-green);
+
+  --color-border-default: var(--vt-c-cream);
+  --color-border-success: var(--vt-c-green);
+  --color-border-error: var(--vt-c-red);
+
+  --color-accent: var(--vt-c-green);
+  --color-error: var(--vt-c-red);
+  --color-surface: var(--vt-c-cream);
+
+  /* fonts */
+  --font-heading: 'Neue Montreal', sans-serif;
+  --font-heading-secondary: 'Messina Sans Mono', monospace;
+  --font-body: 'Neue Montreal', sans-serif;
+  --font-mono: 'Messina Sans Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}

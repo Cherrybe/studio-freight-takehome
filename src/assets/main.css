@@ -1,5 +1,39 @@
-@import './base.css';
+@import './styles/base.css';
 @import "tailwindcss";
+
+@theme {
+  /* colors */
+  --color-green: var(--vt-c-green);
+  --color-cream: var(--vt-c-cream);
+  --color-grey: var(--vt-c-grey);
+  --color-black: var(--vt-c-black);
+  --color-red: var(--vt-c-red);
+
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+
+  --color-text: var(--color-text);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+
+  --color-heading: var(--color-heading);
+  --color-heading-secondary: var(--color-heading-secondary);
+  --color-heading-tertiary: var(--color-heading-tertiary);
+
+  --color-border-default: var(--color-border-default);
+  --color-border-success: var(--color-border-success);
+  --color-border-error: var(--color-border-error);
+
+  --color-accent: var(--color-accent);
+  --color-error: var(--color-error);
+  --color-surface: var(--color-surface);
+
+  /* fonts */
+  --font-heading: 'Neue Montreal', sans-serif;
+  --font-heading-secondary: 'Messina Sans Mono', monospace;
+  --font-body: 'Neue Montreal', sans-serif;
+  --font-mono: 'Messina Sans Mono', monospace;
+}
 
 #app {
   max-width: 1280px;

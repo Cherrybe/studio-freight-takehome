@@ -1,54 +1,114 @@
-# studio-freight-takehome
+# Studio Freight - Frontend Developer Take-Home Assignment
 
-This template should help get you started developing with Vue 3 in Vite.
+**Author:** Christabel Quaye  
+**Role:** Frontend Developer  
+**Client:** Studio Freight  
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Overview
 
-## Recommended Browser Setup
+This project is a **Vue 3 (Vite)** implementation of the Studio Freight contact form section, built for the Frontend Developer take-home assignment. The focus is on **pixel-perfect styling**, **smooth yet performant animations**, and **clean, maintainable component architecture**.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+CSS transitions are used wherever possible, with **GSAP** reserved for more advanced sequencing or timeline effects.
 
-## Type Support for `.vue` Imports in TS
+---
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Tech Stack
 
-## Customize configuration
+| Purpose | Tool / Library |
+|----------|----------------|
+| Framework | [Vue 3 (Composition API)](https://vuejs.org) |
+| Build Tool | [Vite](https://vitejs.dev) |
+| Styling | [Tailwind CSS](https://tailwindcss.com) + global CSS variables |
+| Animation | [GSAP](https://greensock.com/gsap) *(optional, minimal usage)* |
+| Deployment | [Vercel](https://vercel.com) |
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Project Structure
 
-```sh
+```
+src/
+├─ assets/
+│ └─ styles/
+│ └─ globals.css
+├─ components/
+│ ├─ ContactForm.vue
+│ ├─ AnimatedToggleButton.vue
+│ ├─ InputField.vue
+│ └─ IconSend.vue
+├─ App.vue
+└─ main.js
+```
+
+---
+
+## Installation & Development
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/<your-username>/studio-freight-takehome.git
+cd studio-freight-takehome
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
 npm run build
+npm run preview
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+---
 
-```sh
-npm run test:unit
-```
+## Live Demo
+- Deployed Site: https://your-live-demo-link.vercel.app
+- Repository: https://github.com/<your-username>/studio-freight-takehome
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
-```
+## Features
+1. Responsive, accessible Contact Form
+2. Animated toggle button to show/hide the form
+3. CSS-based transitions for smooth performance
+4. GSAP used optionally for sequential field animations
+5. Keyboard accessible (focus traps, labeled inputs, aria attributes)
+6. Pixel-perfect spacing, typography, and colors following the Studio Freight aesthetic
+
+---
+
+## Implementation Notes
+- Animation
+The toggle button controls a reactive boolean `isOpen`.
+A `<transition>` component manages entry/exit animations using CSS transitions.
+GSAP is used for staggered field fades when the form appears.
+
+- Accessibility
+Each field is labeled via `for` + `id`.
+The toggle button uses `aria-expanded` to announce state changes.
+Reduced motion is respected via `@media (prefers-reduced-motion)`.
+
+- Styling
+Tailwind CSS utilities ensure consistent spacing and responsive scaling.
+Global variables in `globals.css` handle typography and color palette.
+
+---
+
+## Notes for Reviewers
+- The UI matches the provided Studio Freight contact form design as closely as possible.
+- The animation timing and easing values have been tuned for natural motion.
+- Code is modular and easily extendable for real-world production use.
+- All styles and logic are scoped at the component level; global CSS is minimal.
+
+---
+
+## Feature Improvement
+- Add form validation and error messaging with Vue UseForm or Vuelidate.
+- Integrate backend form submission API.
+- Add unit tests with Vitest and Vue Testing Library.
+- Improve accessibility with focus management when form toggles open/closed.
+
+---
+
+## Contact
+If you need access or encounter issues reviewing the project:
+- Email: [Chrissy](qchristabel5@gmail.com)
+- WhatsApp: [Chrissy](+233548177587)
